@@ -48,4 +48,39 @@ export const scrollAnimation = (cameraPosition, cameraTarget, onUpdate) => {
                 immediateRender: false  // as the animation is heavy on the browser, this sets it to load on when triggered, not before
             }
         })
+        .to(cameraPosition, {
+            x: 1.56,
+            y: 5.0,
+            z: 0.01,
+            scrollTrigger: {
+                trigger: ".display-section",
+                start: "top bottom",
+                end: "top top",
+                scrub: 2,  // to set some delay on the animation
+                immediateRender: false  // as the animation is heavy on the browser, this sets it to load on when triggered, not before
+            },
+            onUpdate
+        })
+        .to(cameraTarget, {
+            x: -0.55,
+            y: 0.32,
+            z: 0.0,
+            scrollTrigger: {
+                trigger: ".display-section",
+                start: "top bottom",
+                end: "top top",
+                scrub: 2,  // to set some delay on the animation
+                immediateRender: false  // as the animation is heavy on the browser, this sets it to load on when triggered, not before
+            }
+        })
+        .to('.display-section', {
+            opacity: 1,
+            scrollTrigger: {
+                trigger: ".display-section",
+                start: "top bottom",
+                end: "top top",
+                scrub: 2,  // to set some delay on the animation
+                immediateRender: false  // as the animation is heavy on the browser, this sets it to load on when triggered, not before
+            }
+        })
 }
