@@ -15,7 +15,6 @@ function Jumbotron() {
 
     return (
         <div className="jumbotron-section wrapper">
-            <h2 className="title">New</h2>
             <img className='logo' src={Iphone} alt="iPhone 14 Pro" />
             <p className='text'>Big and bigger.</p>
             <span className='description'>
