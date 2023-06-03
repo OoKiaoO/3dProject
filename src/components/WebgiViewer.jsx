@@ -33,6 +33,7 @@ const WebgiViewer = forwardRef((props, ref) => {
     const [cameraRef, setCameraRef] = useState(null);
     const canvasContainerRef = useRef(null);
     const [previewMode, setPreviewMode] = useState(false);
+    const [isMobile, setIsMobile] = useState(null);
 
     useImperativeHandle(ref, () => ({
         triggerPreview() {
@@ -59,9 +60,9 @@ const WebgiViewer = forwardRef((props, ref) => {
 
     // caching the scrollAnimation function so that it won't be called on every update
     const memoizedScrollAnimation = useCallback(
-        (position, target, onUpdate) => {
+        (position, target, isMobile, onUpdate) => {
             if (position && target && onUpdate) {
-                scrollAnimation(position, target, onUpdate);
+                scrollAnimation(position, target, isMobile, onUpdate);
             }
         }, []
     )
@@ -73,6 +74,8 @@ const WebgiViewer = forwardRef((props, ref) => {
             canvas: canvasRef.current
         })
         setViewerRef(viewer);
+        const isMobileOrTablet = mobileAndTabletCheck();
+        setIsMobile(isMobileOrTablet);
 
 
         // Add some plugins
@@ -104,6 +107,12 @@ const WebgiViewer = forwardRef((props, ref) => {
         // deactivate user ability to rotate 3dModel on the page
         viewer.scene.activeCamera.setCameraOptions({ controlsEnabled: false });
 
+        if (isMobileOrTablet) {
+            position.set(-16.7, 1.17, 11.7);
+            target.set(0, 1.37, 0);
+            props.contentRef.current.className = "mobile-or-tablet";
+        }
+
         // to have page/animation always start from top of the page
         window.scrollTo(0, 0);
 
@@ -122,7 +131,7 @@ const WebgiViewer = forwardRef((props, ref) => {
             }
         });
 
-        memoizedScrollAnimation(position, target, onUpdate);
+        memoizedScrollAnimation(position, target, isMobile, onUpdate);
     }, []);
 
     useEffect(() => {
