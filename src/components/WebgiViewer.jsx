@@ -25,7 +25,6 @@ import { scrollAnimation } from "../lib/scroll-animation";
 gsap.registerPlugin(ScrollTrigger);
 
 const WebgiViewer = forwardRef((props, ref) => {
-
     const canvasRef = useRef(null);
     const [viewerRef, setViewerRef] = useState(null);
     const [targetRef, setTargetRef] = useState(null);
@@ -68,7 +67,6 @@ const WebgiViewer = forwardRef((props, ref) => {
     )
 
     const setupViewer = useCallback(async () => {
-
         // Initialize the viewer
         const viewer = new ViewerApp({
             canvas: canvasRef.current
@@ -77,15 +75,15 @@ const WebgiViewer = forwardRef((props, ref) => {
         const isMobileOrTablet = mobileAndTabletCheck();
         setIsMobile(isMobileOrTablet);
 
-
         // Add some plugins
         const manager = await viewer.addPlugin(AssetManagerPlugin)
 
         const camera = viewer.scene.activeCamera;
-        setCameraRef(camera);
         const position = camera.position;
-        setPositionRef(position);
         const target = camera.target;
+
+        setCameraRef(camera);
+        setPositionRef(position);
         setTargetRef(target);
 
         // Add plugins individually.
@@ -131,7 +129,7 @@ const WebgiViewer = forwardRef((props, ref) => {
             }
         });
 
-        memoizedScrollAnimation(position, target, isMobile, onUpdate);
+        memoizedScrollAnimation(position, target, isMobileOrTablet, onUpdate);
     }, []);
 
     useEffect(() => {

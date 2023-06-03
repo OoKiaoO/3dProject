@@ -100,7 +100,7 @@ body::-webkit-scrollbar-thumb {
 .display-section .text {
   display: inline-block;
   color: transparent;
-  background-image: linear-gradient(180deg, #ffb6ff, #b344ff);
+  background-image: linear-gradient(48deg, #ea9833, #b344ff);
   -webkit-background-clip: text;
   background-clip: text;
   padding-top: 0.5px;
@@ -191,14 +191,14 @@ nav .link-styled {
   max-width: 980px;
   width: 100%;
   box-sizing: border-box;
-  height: calc(100vh - 40px);
+  height: calc(90vh - 40px);
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-top: 60px;
+  padding-top: 50px;
   position: relative;
   z-index: 1;
-  min-height: 831px;
+  min-height: 748px;
 }
 
 .jumbotron-section .title {
@@ -215,7 +215,7 @@ nav .link-styled {
 .jumbotron-section .text {
   display: inline-block;
   color: transparent;
-  background-image: linear-gradient(180deg, #fdbff9, #992CC7);
+  background-image: linear-gradient(228deg, #ADDDED, #992CC7);
   -webkit-background-clip: text;
   background-clip: text;
   padding-top: 0.5px;
@@ -268,7 +268,7 @@ nav .link-styled {
 
 .jumbotron-section .iphone-img {
   margin-right: -400px;
-  height: 516px;
+  height: 476px;
   position: absolute;
   bottom: 0;
 }
@@ -442,5 +442,20 @@ nav .link-styled {
 
   .sound-section .content {
     max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .jumbotron-section .text {
+    font-size: 40px;
+  }
+
+  .jumbotron-section .description,
+  .sound-section .description {
+    font-size: 11px;
+  }
+
+  .sound-section .text {
+    font-size: 44px;
   }
 }
